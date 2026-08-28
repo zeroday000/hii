@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Special Surprise ✨</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{min-height:100vh;overflow:hidden;font-family:"Segoe UI",sans-serif;background:#050507;color:white}
+    .background{position:fixed;inset:0;background:radial-gradient(circle at 50% 40%,rgba(161,105,255,.15),transparent 30%),radial-gradient(circle at 20% 80%,rgba(255,105,180,.10),transparent 30%),#050507;z-index:-3}
+    .stars{position:fixed;inset:0;background-image:radial-gradient(2px 2px at 20% 30%,white,transparent),radial-gradient(1px 1px at 70% 20%,white,transparent),radial-gradient(2px 2px at 80% 70%,white,transparent),radial-gradient(1px 1px at 30% 80%,white,transparent),radial-gradient(1px 1px at 60% 55%,white,transparent);background-size:300px 300px;animation:starsMove 12s linear infinite;opacity:.5;z-index:-2}
+    @keyframes starsMove{from{transform:translateY(0)}to{transform:translateY(-300px)}}
+    .screen{position:fixed;inset:0;display:flex;justify-content:center;align-items:center;text-align:center;padding:25px;transition:opacity 1s ease,transform 1s ease}
+    .hidden{opacity:0;pointer-events:none;transform:scale(1.08)}
+    .intro-box{max-width:650px}
+    .small-text{font-size:14px;letter-spacing:5px;text-transform:uppercase;color:#c9b8ff;margin-bottom:25px}
+    .mystery{font-size:clamp(38px,8vw,78px);font-weight:700;line-height:1.05;background:linear-gradient(90deg,#fff,#e3c8ff,#fff);-webkit-background-clip:text;color:transparent;animation:glow 3s ease-in-out infinite}
+    @keyframes glow{0%,100%{filter:drop-shadow(0 0 5px rgba(220,180,255,.2))}50%{filter:drop-shadow(0 0 25px rgba(220,180,255,.7))}}
+    .subtitle{margin-top:25px;color:#aaa;font-size:17px;letter-spacing:1px}
+    .unlock-btn{margin-top:45px;padding:17px 38px;border:1px solid rgba(255,255,255,.25);border-radius:50px;background:rgba(255,255,255,.06);color:white;font-size:15px;letter-spacing:3px;cursor:pointer;backdrop-filter:blur(15px);box-shadow:0 0 25px rgba(185,130,255,.15),inset 0 0 20px rgba(255,255,255,.03);transition:.4s}
+    .unlock-btn:hover{transform:translateY(-4px) scale(1.03);box-shadow:0 0 45px rgba(207,150,255,.5),inset 0 0 20px rgba(255,255,255,.08)}
+    .countdown-number{font-size:clamp(80px,20vw,180px);font-weight:700;background:linear-gradient(180deg,#fff,#bd8cff);-webkit-background-clip:text;color:transparent;animation:countPulse 1s ease}
+    @keyframes countPulse{0%{transform:scale(.5);opacity:0}50%{transform:scale(1.15);opacity:1}100%{transform:scale(1)}}
+    .loading-text{color:#aaa;letter-spacing:4px;margin-top:15px;text-transform:uppercase}
+    #celebration{background:radial-gradient(circle at 50% 40%,rgba(255,140,210,.18),transparent 30%);overflow:auto}
+    .celebration-content{position:relative;z-index:5;padding:60px 0}
+    .reveal-small{font-size:16px;letter-spacing:7px;color:#ffd6f1;text-transform:uppercase;animation:fadeUp 1.5s ease}
+    .birthday{margin-top:15px;font-size:clamp(42px,10vw,105px);line-height:1;font-weight:800;background:linear-gradient(90deg,#fff,#ffd1ec,#d8b5ff,#fff);background-size:300%;-webkit-background-clip:text;color:transparent;animation:birthdayAppear 2s ease,shine 5s linear infinite}
+    @keyframes birthdayAppear{from{opacity:0;transform:scale(.5);filter:blur(20px)}to{opacity:1;transform:scale(1);filter:blur(0)}}
+    @keyframes shine{from{background-position:0}to{background-position:300%}}
+    .name{margin-top:15px;font-size:clamp(45px,11vw,120px);font-weight:800;letter-spacing:4px;color:#fff;text-shadow:0 0 10px rgba(255,255,255,.6),0 0 35px rgba(255,150,220,.7),0 0 80px rgba(190,130,255,.5);animation:nameReveal 2s 1s both ease}
+    @keyframes nameReveal{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+    .wish-line{margin-top:25px;color:#d6d0dc;font-size:17px;animation:fadeUp 2s 2s both ease}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
+    .cake{margin:45px auto 0;width:150px;height:90px;position:relative;animation:cakeFloat 3s ease-in-out infinite}
+    .cake-body{position:absolute;bottom:0;width:150px;height:65px;border-radius:12px 12px 20px 20px;background:linear-gradient(#ffd8ed,#c98be0);box-shadow:0 15px 35px rgba(210,130,255,.35)}
+    .cake-top{position:absolute;top:5px;width:150px;height:25px;border-radius:50%;background:#fff0fa}
+    .candle{position:absolute;width:8px;height:35px;background:#fff;top:-28px;left:71px;border-radius:5px}
+    .flame{position:absolute;width:15px;height:20px;background:#ffd166;border-radius:50% 50% 50% 0;transform:rotate(-45deg);top:-20px;left:-3px;box-shadow:0 0 25px #ffd166;animation:flame 1s ease-in-out infinite alternate}
+    @keyframes flame{from{transform:rotate(-45deg) scale(.9)}to{transform:rotate(-45deg) scale(1.1)}}
+    @keyframes cakeFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    .message-card{max-width:650px;margin:70px auto 0;padding:30px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);border-radius:25px;backdrop-filter:blur(20px);color:#ddd;line-height:1.8;font-size:16px;animation:fadeUp 2s 3s both ease}
+    .confetti{position:fixed;width:8px;height:14px;top:-20px;z-index:10;animation:fall linear forwards}
+    @keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+    .balloon{position:fixed;width:45px;height:58px;border-radius:50%;bottom:-100px;opacity:.8;z-index:1;animation:balloonUp 10s linear forwards}
+    @keyframes balloonUp{to{transform:translateY(-120vh) rotate(15deg)}}
+    @media(max-width:600px){.subtitle{font-size:14px}.unlock-btn{padding:15px 28px;font-size:12px}.message-card{font-size:14px;margin-top:50px}.cake{transform:scale(.85)}}
+  </style>
+</head>
+<body>
+  <div class="background"></div><div class="stars"></div>
+
+  <section id="intro" class="screen">
+    <div class="intro-box">
+      <div class="small-text">A little secret</div>
+      <h1 class="mystery">Something<br>Special Awaits...</h1>
+      <p class="subtitle">This isn't just another webpage.<br>There's a surprise waiting behind this door.</p>
+      <button class="unlock-btn" onclick="startSurprise()">🔐 UNLOCK THE SURPRISE</button>
+    </div>
+  </section>
+
+  <section id="countdown" class="screen hidden">
+    <div><div id="countNumber" class="countdown-number">3</div><div class="loading-text">Get ready...</div></div>
+  </section>
+
+  <section id="celebration" class="screen hidden">
+    <div class="celebration-content">
+      <div class="reveal-small">Today is all about you ✨</div>
+      <h1 class="birthday">HAPPY BIRTHDAY</h1>
+      <div class="name">SMITANJALI</div>
+      <p class="wish-line">May your day be filled with happiness, smiles & beautiful moments. ✨</p>
+      <div class="cake">
+        <div class="candle"><div class="flame"></div></div>
+        <div class="cake-top"></div><div class="cake-body"></div>
+      </div>
+      <div class="message-card">
+        🌸 Today is your special day.<br><br>
+        I hope this little surprise brings a smile to your face and makes your birthday a little more memorable.
+        <br><br>
+        Keep smiling, keep shining, and may this new year of your life bring lots of happiness and beautiful memories.
+        <br><br><strong>Happy Birthday, Smitanjali! 🎂✨</strong>
+      </div>
+    </div>
+  </section>
+
+  <audio id="birthdayMusic" loop>
+    <source src="birthday-music.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const intro=document.getElementById("intro"),countdown=document.getElementById("countdown"),celebration=document.getElementById("celebration"),countNumber=document.getElementById("countNumber"),music=document.getElementById("birthdayMusic");
+
+    function startSurprise(){
+      music.volume=.45;
+      music.play().catch(()=>{});
+      intro.classList.add("hidden");
+      setTimeout(()=>{countdown.classList.remove("hidden");runCountdown()},900);
+    }
+
+    function runCountdown(){
+      let number=3;
+      countNumber.textContent=number;
+      const timer=setInterval(()=>{
+        number--;
+        if(number>0){
+          countNumber.textContent=number;
+          countNumber.style.animation="none";
+          void countNumber.offsetWidth;
+          countNumber.style.animation="countPulse 1s ease";
+        }else{
+          clearInterval(timer);
+          countNumber.textContent="✨";
+          setTimeout(showCelebration,900);
+        }
+      },1000);
+    }
+
+    function showCelebration(){
+      countdown.classList.add("hidden");
+      setTimeout(()=>{celebration.classList.remove("hidden");createConfetti();createBalloons()},500);
+    }
+
+    function createConfetti(){
+      for(let i=0;i<140;i++){
+        const c=document.createElement("div");
+        c.className="confetti";
+        c.style.left=Math.random()*100+"vw";
+        c.style.animationDuration=(Math.random()*3+3)+"s";
+        c.style.animationDelay=Math.random()*2+"s";
+        c.style.transform=`rotate(${Math.random()*360}deg)`;
+        c.style.background=`hsl(${Math.random()*360},85%,70%)`;
+        document.body.appendChild(c);
+        setTimeout(()=>c.remove(),7000);
+      }
+    }
+
+    function createBalloons(){
+      for(let i=0;i<18;i++){
+        const b=document.createElement("div");
+        b.className="balloon";
+        b.style.left=Math.random()*100+"vw";
+        b.style.background=`hsl(${Math.random()*360},75%,65%)`;
+        b.style.animationDuration=(Math.random()*5+8)+"s";
+        b.style.animationDelay=Math.random()*3+"s";
+        document.body.appendChild(b);
+        setTimeout(()=>b.remove(),15000);
+      }
+    }
+  </script>
+</body>
+</html>
